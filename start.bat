@@ -1,4 +1,5 @@
 @echo off
+color 0b
 mode con:cols=50 lines=20
 SETLOCAL EnableDelayedExpansion
 for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (
@@ -6,12 +7,25 @@ for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1)
 )
 set GAMENAME=RPGMSD
 title %GAMENAME%
+set select=1
+set max=2
 :titlescreen
 cls
-call :ColorText 0e "%GAMENAME%"
+echo %GAMENAME%
+echo.&&echo.&&echo.
+if %select%==1 (
+	call :ColorText 0f "Play"&&echo.
+) else (echo Play)
+echo.
+if %select%==2 (
+	call :ColorText 0f "New Game"&&echo.
+) else (echo New Game)
 echo.
 
-pause
+
+
+echo.
+choice /c:wsd > NUL
 goto titlescreen
 
 
